@@ -31,6 +31,10 @@ app.listen(port , ()=>{
     console.log(`listening to requests on port ${port}`);
 })
 
+app.get("/" , (req,res)=>{
+    res.send("server running");
+})
+
 // handle routes
 
 app.use("/auth" ,  authRoutes);
