@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
+import rentRoutes from "./routes/rentRoutes.js";
 
 const app = express();
 
@@ -39,4 +40,5 @@ app.get("/" , (req,res)=>{
 // handle routes
 
 app.use("/auth" ,  authRoutes);
+app.use("/rent" , rentRoutes);
 
