@@ -12,7 +12,8 @@ app.use(cors({
     origin:"*"
 }))
 dotenv.config();
-app.use(express.json());
+app.use(express.json({limit:"5mb"}));
+mongoose.set('strictQuery', true);
 
 // env variables
 

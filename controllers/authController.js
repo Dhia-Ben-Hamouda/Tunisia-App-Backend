@@ -10,7 +10,7 @@ export async function signIn(req,res){
 
         if(!exist){
             return res.status(400).json({
-                msg:"User with the given email doesn't exist"
+                msg:"user with the given email doesn't exist"
             })
         }else{
 
@@ -19,12 +19,13 @@ export async function signIn(req,res){
             if(match){
 
                 return res.status(200).json({
-                    token:generateToken(email , exist._id)
+                    token:generateToken(email , exist._id , exist.picture),
+                    msg:"ok"
                 })
 
             }else{
                 return res.status(401).json({
-                    msg:"Wrong password"
+                    msg:"wrong password"
                 })
             }
 
@@ -46,7 +47,7 @@ export async function signUp(req,res){
 
         if(exist){
             return res.status(400).json({
-                msg:"User with the given email already exists"
+                msg:"user with the given email already exists"
             })
         }else{
 
@@ -62,18 +63,20 @@ export async function signUp(req,res){
             })
 
             return res.status(201).json({
-                msg:"User created successfully"
+                msg:"user created successfully"
             })
 
         }
 
     }catch(err){
+        console.error(err);
+
         return res.status(400).json({
             msg:"Error while signing up"
         })
     }
 }
 
-function generateToken(email , id){
-    return jwt.sign(  {email , id}  , process.env.JWT_SECRET  , { expiresIn:"30d" }  );
+function generateToken(email , id , picture){
+    return jwt.sign(  {email , id , picture}  , process.env.JWT_SECRET  , { expiresIn:"30d" }  );
 }
