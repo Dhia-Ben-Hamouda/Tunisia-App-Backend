@@ -4,10 +4,16 @@ const houseSchema = new mongoose.Schema({
     name:String,
     description:String,
     picture:String,
-    price:Number,
+    price:String,
     phone:String,
-    comments:[],
-    ratings:[]
+    comments:{
+        type:Array,
+        default:[]
+    },
+    ratings:{
+        type:Array,
+        default:[]
+    }
 })
 
 export default mongoose.model("houses" , houseSchema);

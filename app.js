@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import rentRoutes from "./routes/rentRoutes.js";
+import House from "./models/House.js";
 
 const app = express();
 
@@ -42,3 +43,6 @@ app.get("/" , (req,res)=>{
 app.use("/auth" ,  authRoutes);
 app.use("/rent" , rentRoutes);
 
+app.delete("/" , async (req,res)=>{
+    await House.deleteMany({name : "S+2 Zone touristique Monastir"});
+})
