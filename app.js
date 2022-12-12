@@ -35,7 +35,7 @@ app.listen(port , ()=>{
 })
 
 app.get("/" , (req,res)=>{
-    res.send("server running !");
+    res.send("app running !");
 })
 
 // handle routes
