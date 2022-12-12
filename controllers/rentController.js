@@ -2,10 +2,8 @@ import House from "../models/House.js";
 
 export async function insertHouse(req, res) {
     try {
-
         const house = req.body;
 
-        console.log(house);
         await House.create(house);
 
         return res.status(201).json({
@@ -45,7 +43,6 @@ export async function getAllHouses(req, res) {
 
 export async function getHouseById(req,res){
     try{
-
         const { id } = req.query;
         const house = await House.findById(id);
 
@@ -53,6 +50,21 @@ export async function getHouseById(req,res){
     }catch(err){
         return res.status(400).json({
             msg:"error while fetching house"
+        })
+    }
+}
+
+export async function deleteHouse(req,res){
+    try{
+        const { id } = req.query;
+        await House.deleteOne({id});
+
+        return res.status(200).json({
+            msg:"house deleted successfully"
+        })
+    }catch(err){
+        return res.status(400).json({
+            msg:"error while deleting house"
         })
     }
 }
